@@ -24,11 +24,11 @@ has_many :orders
 |---------------------|-------------|---------------------------------|
 |item_name            |string       |null: false                      |
 |item_description     |text         |null: false                      |
-|category             |string       |null: false                      |
-|item_state           |string       |null: false                      |
-|postage              |string       |null: false                      |
-|region               |string       |null: false                      |
-|shipping-data        |string       |null: false                      |
+|category_id          |integer      |null: false                      |
+|item_state_id        |integer      |null: false                      |
+|postage_id           |integer      |null: false                      |
+|region_id            |integer      |null: false                      |
+|shipping-data_id     |integer      |null: false                      |
 |price                |integer      |null: false                      |
 |user                 |references   |null: false, foreign_key: true   |
 
