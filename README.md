@@ -22,7 +22,6 @@ has_many :orders
 
 |Column               |Type         |Options                          |
 |---------------------|-------------|---------------------------------|
-|image                |             |                                 |
 |item_name            |string       |null: false                      |
 |item_description     |text         |null: false                      |
 |category             |string       |null: false                      |
