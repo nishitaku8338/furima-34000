@@ -28,7 +28,7 @@ has_many :orders
 |item_state_id        |integer      |null: false                      |
 |postage_id           |integer      |null: false                      |
 |region_id            |integer      |null: false                      |
-|shipping-data_id     |integer      |null: false                      |
+|shipping_data_id     |integer      |null: false                      |
 |price                |integer      |null: false                      |
 |user                 |references   |null: false, foreign_key: true   |
 
