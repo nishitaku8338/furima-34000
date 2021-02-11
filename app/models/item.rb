@@ -6,4 +6,5 @@ class Item < ApplicationRecord
   has_one_attached :image
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category #ActiveHash
+  belongs_to :item_state #ActiveHash
 end
