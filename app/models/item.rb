@@ -1,20 +1,21 @@
 class Item < ApplicationRecord
   validates :image, presence: true
   validates :item_name, presence: true, length: { maximum: 40 }
-  validates :item_description, presence: true, length: { in: 7..1000 }
-  VALID_PRICEL_HALF = /\A[0-9]+\z/       # 300~9999999、半角数字以外を外す
+  validates :item_description, presence: true, length: { maximum: 1000 }
+  VALID_PRICEL_HALF = /\A[0-9]+\z/ # 半角数字以外を外す
   validates :price, presence: true,
-    format: {with: VALID_PRICEL_HALF},
-    length: {minimum: 3, maxinum: 7},
-    numericality: { 
-    only_integer: true,                                            # 数値のみ
-    greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999  # 指定された値以上、指定された値以下
-    }
-  validates :category_id, numericality:      { other_than: 1 } #ジャンルの選択が「--」の時は保存できない
-  validates :item_state_id, numericality:    { other_than: 1 }
-  validates :postage_id, numericality:       { other_than: 1 }
-  validates :region_id, numericality:        { other_than: 1 }
-  validates :shipping_data_id, numericality: { other_than: 1 }
+  numericality: { with: VALID_PRICEL_HALF, message: "Half-width number" }
+  validates :price, numericality: { 
+    greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999, 
+    message: "Out of setting range" # messageオプションは一つのバリデーションで1回しか対応しない。
+    } # priceカラムがinteger型の場合、バリデーションは「numericality」を使い「format」は使えない。
+  with_options numericality: { other_than: 1, message: "Select"} do  #ジャンルの選択が「--」の時は保存できない
+    validates :category_id
+    validates :item_state_id
+    validates :postage_id
+    validates :region_id
+    validates :shipping_data_id
+  end
   
   belongs_to :user
   has_one_attached :image
