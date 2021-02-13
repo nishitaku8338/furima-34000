@@ -1,10 +1,11 @@
 class Item < ApplicationRecord
-  validates :image, presence: true
-  validates :item_name, presence: true, length: { maximum: 40 }
-  validates :item_description, presence: true, length: { maximum: 1000 }
   VALID_PRICEL_HALF = /\A[0-9]+\z/ # 半角数字以外を外す
-  validates :price, presence: true,
-                    numericality: { with: VALID_PRICEL_HALF, message: 'Half-width number' }
+  with_options presence: true do
+    validates :image
+    validates :item_name, length: { maximum: 40 }
+    validates :item_description, length: { maximum: 1000 }
+    validates :price, numericality: { with: VALID_PRICEL_HALF, message: 'Half-width number' }
+  end
   validates :price, numericality: {
     greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999,
     message: 'Out of setting range' # messageオプションは一つのバリデーションで1回しか対応しない。
