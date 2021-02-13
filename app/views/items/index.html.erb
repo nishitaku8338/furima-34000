@@ -126,8 +126,8 @@
     <%= link_to '新規投稿商品', "#", class: "subtitle" %>
     <ul class='item-lists'>
 
-      <%# 商品のインスタンス変数になにか入っている場合、中身のすべてを展開できるようにしましょう %>
-      
+      <%# 商品情報がデータベースに存在する場合下記を表示 %>
+      <% if @items[0] != nil %>
       <% @items.each do |item| %>
       <li class='list'>
         <%= link_to "#" do %>
@@ -135,9 +135,11 @@
           <%= image_tag item.image, class: "item-img" %>
 
           <%# 商品が売れていればsold outを表示しましょう %>
+          <%# if item.(ここに条件文) %>
           <div class='sold-out'>
             <span>Sold Out!!</span>
           </div>
+          <%# end %>
           <%# //商品が売れていればsold outを表示しましょう %>
 
         </div>
@@ -156,11 +158,9 @@
         <% end %>
       <% end %>
       </li>
-      <%# //商品のインスタンス変数になにか入っている場合、中身のすべてを展開できるようにしましょう %>
 
-      <%# 商品がない場合は以下のダミー商品が表示されるようにしましょう %>
-      <%# 商品がある場合は表示されないようにしましょう %>
-
+      <%# 商品情報がデータベースに存在してない場合下記を表示 %>
+      <% else %>
       <li class='list'>
         <%= link_to '#' do %>
         <%= image_tag "https://tech-master.s3.amazonaws.com/uploads/curriculums/images/Rails1-4/sample.jpg", class: "item-img" %>
@@ -176,13 +176,12 @@
             </div>
           </div>
         </div>
-
         <% end %>
+      <% end %>
       </li>
-      <%# //商品がある場合は表示されないようにしましょう %>
-      <%# //商品がない場合は以下のダミー商品が表示されるようにしましょう %>
     </ul>
   </div>
+
   <%# /商品一覧 %>
 </div>
 <%= link_to(new_item_path, class: 'purchase-btn') do %>
