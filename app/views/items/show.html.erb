@@ -30,7 +30,7 @@
     <p class="or-text">or</p>
     <%= link_to "削除", "#", method: :delete, class:"item-destroy" %>
       
-      <%# ← 商品購入機能実装後 改めて条件分岐 elsif '商品が出品中かどうか' %>
+      <% else %> <%# ← 商品購入機能実装後 改めて条件分岐 elsif '商品が出品中かどうか' %>
     
     <%# 商品が売れていない場合はこちらを表示しましょう %>
     <%= link_to "購入画面に進む", "#" ,class:"item-red-btn"%>
