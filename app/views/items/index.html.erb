@@ -130,7 +130,7 @@
       <% if @items[0] != nil %>
       <% @items.each do |item| %>
       <li class='list'>
-        <%= link_to "#" do %>
+        <%= link_to item_path(item.id) do %>
         <div class='item-img-content'>
           <%= image_tag item.image, class: "item-img" %>
 
@@ -162,7 +162,7 @@
       <%# 商品情報がデータベースに存在してない場合下記を表示 %>
       <% else %>
       <li class='list'>
-        <%= link_to '#' do %>
+        <%= link_to item_path(item.id) do %>
         <%= image_tag "https://tech-master.s3.amazonaws.com/uploads/curriculums/images/Rails1-4/sample.jpg", class: "item-img" %>
         <div class='item-info'>
           <h3 class='item-name'>
