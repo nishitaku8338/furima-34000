@@ -30,7 +30,7 @@
     <%# ログインしているユーザーと出品しているユーザーで条件分岐する処理 %>
     <% if user_signed_in? %> <%# ログインしているか確認 %>
       <% if current_user.id == @item.user.id %> <%# 出品しているユーザーか確認 %>
-    <%= link_to "商品の編集", "#", method: :get, class: "item-red-btn" %>
+    <%= link_to "商品の編集", edit_item_path(@item.id), method: :get, class: "item-red-btn" %>
     <p class="or-text">or</p>
     <%= link_to "削除", "#", method: :delete, class:"item-destroy" %>
       
