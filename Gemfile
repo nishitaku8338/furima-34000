@@ -64,3 +64,5 @@ gem 'mini_magick'                 # 画像の処理導入 ImageMagickの機能�
 gem 'image_processing', '~> 1.2'  # 画像の処理導入 画像サイズを調整する機能
 
 gem 'active_hash'                 # ActiveHashを導入
+
+gem 'payjp'                       # payjp（Gem）Ruby（Ruby on Rails）のサーバーサイドから、決済処理を行うときに必要となるGem
