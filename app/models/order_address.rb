@@ -1,11 +1,11 @@
 class OrderAddress
   include ActiveModel::Model
-  #attr_accessor #:token,              # クレジットカード決済
-  attr_accessor :user_id, :item_id,  # ordersテーブル外部キー
+  attr_accessor :token,              # クレジットカード決済
+                :user_id, :item_id,  # ordersテーブル外部キー
                 :postal_code, :prefecture_id, :city, :house_number, :building_name, :phone_number
 
   with_options presence: true do
-    #validates :token          # クレジットカード決済
+    validates :token          # クレジットカード決済
     validates :user_id        # ordersテーブル外部キー
     validates :item_id        # ordersテーブル外部キー
     validates :postal_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}
