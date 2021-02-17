@@ -23,13 +23,17 @@ const pay = () => {
         const renderDom = document.getElementById("charge-form");
         const tokenObj = `<input value=${token} name='token' type="hidden">`;
         renderDom.insertAdjacentHTML("beforeend", tokenObj);
-        //debugger;
+        //debugger;  処理を停止できるコード
       }
 
+      // カード情報の各name属性を削除する
       document.getElementById("card-number").removeAttribute("name");
       document.getElementById("card-cvc").removeAttribute("name");
       document.getElementById("card-exp-month").removeAttribute("name");
       document.getElementById("card-exp-year").removeAttribute("name");
+
+      // JavaScript側からフォームの送信処理(サーバーサイド(railsのコントローラー)に送信)
+      document.getElementById("charge-form").submit();
     });
   });
 };
