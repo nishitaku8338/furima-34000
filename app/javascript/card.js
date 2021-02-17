@@ -21,9 +21,9 @@ const pay = () => {
         const token = response.id;                   // responseはそのレスポンスの内容が含まれ、response.idとすることでトークンの値を取得する
         //console.log(token)                         // response.id(トークン)をコンソールで可視化する。
         const renderDom = document.getElementById("charge-form");
-        const tokenObj = `<input value=${token} name='token'>`;
+        const tokenObj = `<input value=${token} name='token' type="hidden">`;
         renderDom.insertAdjacentHTML("beforeend", tokenObj);
-        debugger;
+        //debugger;
       }
     });
   });
