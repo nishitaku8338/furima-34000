@@ -20,6 +20,10 @@ const pay = () => {
       if (status == 200) {                           // HTTPステータスコードが200、処理が完了したときだけ、トークンの値を取得する。
         const token = response.id;                   // responseはそのレスポンスの内容が含まれ、response.idとすることでトークンの値を取得する
         //console.log(token)                         // response.id(トークン)をコンソールで可視化する。
+        const renderDom = document.getElementById("charge-form");
+        const tokenObj = `<input value=${token} name='token'>`;
+        renderDom.insertAdjacentHTML("beforeend", tokenObj);
+        debugger;
       }
     });
   });
