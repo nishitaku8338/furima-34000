@@ -6,7 +6,6 @@ class OrdersController < ApplicationController
   end
 
   def create
-    binding.pry
     @item = Item.find(params[:item_id])  # :tokenとrender action: :indexに関わる為記述が必要
     @order_address = OrderAddress.new(order_params)
     if @order_address.valid?  # バリデーションを確認
