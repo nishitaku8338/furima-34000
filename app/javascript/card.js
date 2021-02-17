@@ -14,6 +14,14 @@ const pay = () => {
       exp_month: formData.get("order_address[exp_month]"),       // htmlのname属性は、ブラウザの検証を必ず使う
       exp_year: `20${formData.get("order_address[exp_year]")}`,  // 20$は2022年の最初の20の事
     };
+
+    // Payjp.createToken(); ← pay.jsが提供するオブジェクトとメソッド ※カード情報をPAY.JP側に送りトークン化する※
+    Payjp.createToken(card, (status, response) => {  // Payjp.createToken("カードの情報", "取得したあとの処理")
+      if (status == 200) {                           // HTTPステータスコードが200、処理が完了したときだけ、トークンの値を取得する。
+        const token = response.id;                   // responseはそのレスポンスの内容が含まれ、response.idとすることでトークンの値を取得する
+        //console.log(token)                         // response.id(トークン)をコンソールで可視化する。
+      }
+    });
   });
 };
 
