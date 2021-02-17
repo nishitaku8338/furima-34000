@@ -6,6 +6,7 @@ FactoryBot.define do
     house_number { '1-1' }
     building_name { '東京ハイツ' }
     phone_number { '08088883333' }
+    token {"tok_abcdefghijk00000000000000000"}
   end
   # association :user    order_addressは自分で生成した為、アソシエーション機能を持たない
   # association :item    order_addressは自分で生成した為、アソシエーション機能を持たない
