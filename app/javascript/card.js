@@ -25,6 +25,11 @@ const pay = () => {
         renderDom.insertAdjacentHTML("beforeend", tokenObj);
         //debugger;
       }
+
+      document.getElementById("card-number").removeAttribute("name");
+      document.getElementById("card-cvc").removeAttribute("name");
+      document.getElementById("card-exp-month").removeAttribute("name");
+      document.getElementById("card-exp-year").removeAttribute("name");
     });
   });
 };
