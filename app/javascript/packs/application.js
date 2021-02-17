@@ -7,7 +7,8 @@ require("@rails/ujs").start()
 
 require("@rails/activestorage").start()
 require("channels")
-require("../item_price")
+require("../item_price")  // 販売手数料、販売利益の自動計算ファイルを作成
+require("../card")        // トークン化を行うファイルを作成
 
 
 // Uncomment to copy all static images under ../images to the output folder and reference
