@@ -6,10 +6,10 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @item = Item.find(params[:item_id])  # :tokenとrender action: :indexに関わる為記述が必要
+    @item = Item.find(params[:item_id])  # :token(amount:商品の値段)とrender action: :indexに関わるため、記述が必要
     @order_address = OrderAddress.new(order_params)
     if @order_address.valid?  # バリデーションを確認
-      pay_item
+      pay_item                # 秘密鍵をPAY.JP側へ送付
       @order_address.save
       redirect_to root_path
     else
