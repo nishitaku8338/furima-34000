@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!                       # ログアウト状態のユーザーが、URLを直接入力して商品購入ページに遷移しようとすると、商品の販売状況に関わらずログインページに遷移する
   before_action :set_item                                 # itemテーブルの情報(レコード)を取得する(order_addressはitemsテーブルと紐づいているため)
-  #before_action :purchase_page, only: :index              # ログイン状態の出品者が、URLを直接入力して自身の出品した商品購入ページに遷移しようとすると、トップページに遷移する
+  before_action :purchase_page, only: :index              # ログイン状態の出品者が、URLを直接入力して自身の出品した商品購入ページに遷移しようとすると、トップページに遷移する
   #before_action :sold_move                                # ログイン状態のユーザーが、URLを直接入力して売却済み商品の商品購入ページへ遷移しようとすると、トップページに遷移する
 
   def index
@@ -47,9 +47,9 @@ class OrdersController < ApplicationController
     @item = Item.find(params[:item_id])
   end
 
-  #def purchase_page                                      # URLで直接「購入ページ」に遷移しようとした時
-  #  redirect_to root_path if current_user == @item.user  # ログインしているユーザー == itemテーブルのデータにitem.user.idと一致した商品があった場合、トップページに遷移する
-  #end
+  def purchase_page                                      # URLで直接「購入ページ」に遷移しようとした時
+    redirect_to root_path if current_user == @item.user  # ログインしているユーザー == itemテーブルのデータにitem.user.idと一致した商品があった場合、トップページに遷移する
+  end
 
   #def sold_move                                          # URLで直接「購入ページ」に遷移しようとした時
   #  redirect_to root_path if @item.order.present?        # orderテーブルにデータが存在する商品は、トップページに遷移する
