@@ -66,3 +66,5 @@ gem 'image_processing', '~> 1.2'  # 画像の処理導入 画像サイズを調�
 gem 'active_hash'                 # ActiveHashを導入
 
 gem 'payjp'                       # payjp（Gem）Ruby（Ruby on Rails）のサーバーサイドから、決済処理を行うときに必要となるGem
+
+gem "aws-sdk-s3", require: false  # S3を使用するため
