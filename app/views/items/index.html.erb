@@ -134,13 +134,13 @@
         <div class='item-img-content'>
           <%= image_tag item.image, class: "item-img" %>
 
-          <%# 商品が売れていればsold outを表示しましょう %>
-          <%# if item.(ここに条件文) %>
+          <%# 商品が売れていればsold outを表示 %>
+          <% if item.order.present? %>
           <div class='sold-out'>
             <span>Sold Out!!</span>
           </div>
-          <%# end %>
-          <%# //商品が売れていればsold outを表示しましょう %>
+          <% end %>
+          <%# //商品が売れていればsold outを表示 %>
 
         </div>
         <div class='item-info'>
@@ -155,9 +155,9 @@
             </div>
           </div>
         </div>
+      </li>
         <% end %>
       <% end %>
-      </li>
 
       <%# 商品情報がデータベースに存在してない場合下記を表示 %>
       <% else %>
@@ -176,9 +176,9 @@
             </div>
           </div>
         </div>
+      </li>
         <% end %>
       <% end %>
-      </li>
     </ul>
   </div>
 

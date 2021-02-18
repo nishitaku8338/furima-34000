@@ -101,3 +101,6 @@ RSpec.describe Item, type: :model do
     end
   end
 end
+
+# テストコード実行コマンド
+# bundle exec rspec spec/models/item_spec.rb

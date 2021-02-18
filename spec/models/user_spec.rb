@@ -204,3 +204,6 @@ RSpec.describe User, type: :model do
     end
   end
 end
+
+# テストコード実行コマンド
+# bundle exec rspec spec/models/user_spec.rb
