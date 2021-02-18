@@ -9,13 +9,13 @@
     <div class="item-img-content">
       <%= image_tag @item.image ,class:"item-box-img" %>
 
-      <%# 商品が売れている場合は、sold outを表示しましょう %>
-      <%# if '商品が購入済み' %>
+      <%# 商品が売れている場合は、sold outを表示 %>
+      <% if @item.order.present? %>
       <div class="sold-out">
         <span>Sold Out!!</span>
       </div>
-      <%# end %>
-      <%# //商品が売れている場合は、sold outを表示しましょう %>
+      <% end %>
+      <%# //商品が売れている場合は、sold outを表示 %>
 
     </div>
     <div class="item-price-box">
@@ -27,22 +27,24 @@
       </span>
     </div>
 
-    <%# ログインしているユーザーと出品しているユーザーで条件分岐する処理 %>
-    <% if user_signed_in? %> <%# ログインしているか確認 %>
-      <% if current_user.id == @item.user.id %> <%# 出品しているユーザーか確認 %>
-    <%= link_to "商品の編集", edit_item_path(@item.id), method: :get, class: "item-red-btn" %>
-    <p class="or-text">or</p>
-    <%= link_to "削除", item_path(@item.id), method: :delete, class:"item-destroy" %>
+    <%# ログイン状態の出品者以外のユーザーのみ、必要な情報を適切に入力すると、商品の購入ができる %>
+    <% if user_signed_in? %>                                                                     <%# ユーザーがログインしていれば、下記の処理を表示 %>
+      <% unless @item.order.present? %>                                                          <%# orderテーブルに商品データ(購入済商品)が存在する場合、endまでの処理を実行しない %>
+        <% if current_user.id == @item.user.id %>                                                <%# ログインしているユーザーが、「出品者」の場合、編集・削除画面を表示する %>
+      <%= link_to "商品の編集", edit_item_path(@item.id), method: :get, class: "item-red-btn" %>
+      <p class="or-text">or</p>
+      <%= link_to "削除", item_path(@item.id), method: :delete, class:"item-destroy" %>
+        
+        <% else %>                                                                               <%# ログインしているユーザーが、「出品者では無い」場合、購入画面を表示する %>
       
-      <% else %> <%# ← 商品購入機能実装後 改めて条件分岐 elsif '商品が出品中かどうか' %>
-    
-    <%# 商品が売れていない場合はこちらを表示しましょう %>
-    <%= link_to "購入画面に進む", item_orders_path(@item.id) ,class:"item-red-btn"%>
-    <%# //商品が売れていない場合はこちらを表示しましょう %>
-      
-      <% end %>
-    <% end %>
-    <%# //ログインしているユーザーと出品しているユーザーで条件分岐する処理 %>
+      <%# 商品が売れていない場合はこちらを表示 ← 32行目で定義 %>
+      <%= link_to "購入画面に進む", item_orders_path(@item.id) ,class:"item-red-btn"%>
+      <%# //商品が売れていない場合はこちらを表示 ← 32行目で定義 %>
+        
+        <% end %>                                                                                <%# //ログインしているユーザーが、「出品者」・「出品者では無い」場合で条件分岐する処理 %>
+      <% end %>                                                                                  <%# //orderテーブルに商品データ(購入済商品)が存在する場合、endまでの処理を実行しない %>
+    <% end %>                                                                                    <%# //ユーザーがログインしていれば、下記の処理を表示 %>
+    <%# //ログイン状態の出品者以外のユーザーのみ、必要な情報を適切に入力すると、商品の購入ができる %>
 
     <div class="item-explain-box">
       <span><%= @item.item_description %></span>
