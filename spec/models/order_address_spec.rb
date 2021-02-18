@@ -89,8 +89,18 @@ RSpec.describe OrderAddress, type: :model do
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include("Phone number Input only number")
       end
-      it 'phone_numberは十桁以上半角数字入力しないと番号保存できないこと' do
+      it 'phone_numberは英数混合を入力すると番号保存できないこと' do
+        @order_address.phone_number = '123456abcde'
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include("Phone number Input only number")
+      end
+      it 'phone_numberは10桁以上半角数字を入力しないと番号保存できないこと' do
         @order_address.phone_number = '123456789'
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include("Phone number Input only number")
+      end
+      it 'phone_numberは12桁以上半角数字を入力すると番号保存できないこと' do
+        @order_address.phone_number = '123456789012'
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include("Phone number Input only number")
       end
