@@ -1,5 +1,6 @@
 #サーバ上でのアプリケーションコードが設置されているディレクトリを変数に入れておく
-app_path = File.expand_path('../../', __FILE__)
+#app_path = File.expand_path('../../', __FILE__)
+app_path = File.expand_path('../../../', __FILE__)  # 「../」が一つ増えている
 
 #アプリケーションサーバの性能を決定する
 #リクエストを受け付けレスポンスを生成するworker(ワーカー)の数を決めます。
@@ -7,22 +8,27 @@ worker_processes 1
 
 #アプリケーションの設置されているディレクトリを指定
 #UnicornがRailsのコードを動かす際、ルーティングなど実際に参照するファイルを探すディレクトリを指定します。
-working_directory app_path
+#working_directory app_path
+working_directory "#{app_path}/current"  # 「current」を指定
 
 #Unicornの起動に必要なファイルの設置場所を指定
 #Unicornは、起動する際にプロセスidが書かれたファイルを生成します。その場所を指定します
-pid "#{app_path}/tmp/pids/unicorn.pid"
+#pid "#{app_path}/tmp/pids/unicorn.pid"
+pid "#{app_path}/shared/tmp/pids/unicorn.pid"  # 「shared」の中を参照するよう変更
 
 #ポート番号を指定
 #どのポート番号のリクエストを受け付けることにするかを決定します。今回は、3000番ポートを指定しています
 #↓listen 3000↓に変更
-listen "#{app_path}/tmp/sockets/unicorn.sock"
+#listen "#{app_path}/tmp/sockets/unicorn.sock"
+listen "#{app_path}/shared/tmp/sockets/unicorn.sock"  # 「shared」の中を参照するよう変更
 
 #エラーのログを記録するファイルを指定
-stderr_path "#{app_path}/log/unicorn.stderr.log"
+#stderr_path "#{app_path}/log/unicorn.stderr.log"
+stderr_path "#{app_path}/shared/log/unicorn.stderr.log"  # 「shared」の中を参照するよう変更
 
 #通常のログを記録するファイルを指定
-stdout_path "#{app_path}/log/unicorn.stdout.log"
+#stdout_path "#{app_path}/log/unicorn.stdout.log"
+stdout_path "#{app_path}/shared/log/unicorn.stdout.log"  # 「shared」の中を参照するよう変更
 
 #Railsアプリケーションの応答を待つ上限時間を設定
 timeout 60
