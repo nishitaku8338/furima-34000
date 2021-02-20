@@ -34,6 +34,11 @@ group :development, :test do
   gem 'rspec-rails'        # RSpecを導入
   gem 'factory_bot_rails'  # RSpecを導入
   gem 'faker'              # RSpecを導入 自動生成機能
+  gem 'capistrano'           # Capistranoを利用するためのGem
+  gem 'capistrano-rbenv'     # Capistranoを利用するためのGem
+  gem 'capistrano-bundler'   # Capistranoを利用するためのGem
+  gem 'capistrano-rails'     # Capistranoを利用するためのGem
+  gem 'capistrano3-unicorn'  # Capistranoを利用するためのGem
 end
 
 group :development do
